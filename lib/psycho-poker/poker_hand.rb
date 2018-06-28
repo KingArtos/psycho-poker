@@ -7,8 +7,8 @@ class PokerHand
   end
 
   def self.calc_points(cards)
-    cards.reduce(0) do |acc, card|
-      acc += (CardPoints.points_with_special(card.value) * HandConfig.points_by_class(self))
+    cards.reduce(HandConfig.points_by_class(self)) do |acc, card|
+      acc += CardPoints.points_with_special(card.value)
     end
   end
 

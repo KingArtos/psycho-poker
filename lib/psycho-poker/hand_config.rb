@@ -3,6 +3,6 @@ class HandConfig
 
   def self.points_by_class(klass)
     priority_value = HAND_PRIORITY.index(klass)
-    priority_value.nil? ? 0 : 10 ** ((HAND_PRIORITY.length - 1) - priority_value)
+    priority_value.nil? ? 0 : 1000 * (HAND_PRIORITY.length - priority_value)
   end
 end
