@@ -21,6 +21,10 @@ class CardPoints
 
   DEFAULT_VALUE = 0
 
+  def self.max_value
+    VALUES.merge(SPECIAL_VALUES) { |key, v1, v2| v1 + v2 }.values.sort.last
+  end
+
   def self.points(card_value, with_special = false)
     with_special ? points_with_special(card_value) : points_without_special(card_value)
   end
