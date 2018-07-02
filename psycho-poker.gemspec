@@ -1,19 +1,36 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "psycho/poker/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "psycho-poker"
-  spec.version       = '1.0'
-  spec.authors       = ["kingartos"]
-  spec.email         = ["youremail@yourdomain.com"]
+  spec.version       = Psycho::Poker::VERSION
+  spec.authors       = ["KingArtos"]
+  spec.email         = ["arturos.zica@gmail.com"]
+
   spec.summary       = %q{Choose most powerful poker hand possible on a lot of cards}
   spec.description   = %q{Try combinations on a lot of cards and return the most powerful hand}
   spec.homepage      = ""
-  spec.license       = ""
 
-  spec.files         = ['lib/psycho-poker.rb']
-  spec.executables   = ['bin/psycho-poker']
-  spec.test_files    = ['tests/test_psycho-poker.rb']
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  if spec.respond_to?(:metadata)
+    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  else
+    raise "RubyGems 2.0 or newer is required to protect against " \
+      "public gem pushes."
+  end
+
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-end
+
+  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
