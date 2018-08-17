@@ -5,4 +5,8 @@ class ThreeOfKind < PokerHand
     end
     grouped.length == 3 && grouped.select{|size| size == 3}.length == 1
   end
+
+  def self.description
+    'three-of-a-kind (trinca)'
+  end
 end
